@@ -43,4 +43,6 @@ async def get_ceh_info(ceh_data: Dict):
 
     return formatted_messages
 
-
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
