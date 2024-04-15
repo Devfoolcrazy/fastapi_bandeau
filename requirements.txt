@@ -64,7 +64,6 @@ pep8-naming==0.13.2
 platformdirs==4.2.0
 pluggy==1.4.0
 poyo==0.5.0
-pre-commit==3.7.0
 prompt-toolkit==3.0.43
 pycodestyle==2.8.0
 pydantic==2.6.4
