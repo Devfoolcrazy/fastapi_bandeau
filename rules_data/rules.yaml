@@ -1,0 +1,60 @@
+- conditions:
+    condition_members:
+      location:
+        path: autoroute
+        value: true
+      breakdown_vs_accident:
+        path: type d'incident véhicule
+        value: panne
+    message: "url vers la ressource documentaire: http://la-ressource-va-bien.com"
+    priority: 1
+    validity: 2024-06-01
+    name: "Autoroute + Panne"
+    code: "PANGARD"
+
+- conditions:
+    condition_members:
+      location:
+        path: à la maison
+        value: true
+      breakdown_vs_accident:
+        path: type d'incident véhicule
+        value: panne
+    message: "url vers la ressource documentaire: http://la-ressource-va-bien.com"
+    priority: 2
+    validity: 2024-06-01
+    name: "Maison + Panne"
+    code: "PANHOME"
+
+- conditions:
+    condition_members:
+      location:
+        path: autoroute
+        value: false
+    message: "url vers la ressource documentaire: http://la-ressource-va-bien.com"
+    validity: 2024-06-01
+    name: "Pas Autoroute"
+    code: "NO_GARD"
+    priority: 2
+
+- conditions:
+    condition_members:
+      location:
+        path: autoroute
+        value: true
+    message: "url vers la ressource documentaire: http://la-ressource-va-bien.com"
+    validity: 2024-06-01
+    name: "Autoroute"
+    code: "GARD"
+    priority: 2
+
+- conditions:
+    condition_members:
+      location:
+        path: assureur
+        value: "MC"
+    message: "url vers la ressource documentaire: http://la-ressource-va-bien.com"
+    validity: 2024-06-01
+    name: "MAIF"
+    code: "MC"
+    priority: 1
