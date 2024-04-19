@@ -1,12 +1,16 @@
 path_transcoding = {
     "type d'incident véhicule": "flow.content.botDialogSlot.breakdown_vs_accident",
-    "assureur": "flow.content.botDialogSlot.assureur",
-    "contexte final": "flow.content.botDialogSlot.final_context",
     "effet client véhicule": "flow.content.botDialogSlot.breakdown_generator_fact",
-
+    "contexte final": "flow.content.botDialogSlot.final_context",
+    "assureur": "flow.content.botDialogSlot.assureur",
     "autoroute": "flow.content.collectedData.location.isOnMotorway",
     "à la maison": "flow.content.collectedData.location.isAtHome",
     "benef insultant": "flow.content.collectedData.requestSentiment.isInsult",
+    "nom de la rue": "flow.content.collectedData.requestGeneralInformation.address.road",
     "ville": "flow.content.collectedData.requestGeneralInformation.address.city",
     "departement": "flow.content.collectedData.requestGeneralInformation.address.department",
+    "pays": "flow.content.returnDatasParams.codeSite",
+    "type de demande": "flow.content.collectedData.request.requestType",
+    "is abuser": "flow.content.collectedData.requestGeneralInformation.isAbuser",
+    "isAngry": "flow.content.collectedData.requestSentiment.isInsult",
 }

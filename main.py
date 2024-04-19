@@ -8,7 +8,7 @@ import uvicorn
 
 # OWN UTILS
 from files_utils.tools import load_rules_from_yaml
-from ceh_utils.tools import apply_rules, format_matched_messages
+from ceh_utils.tools import apply_rules, format_matched_message, select_highest_priority_rule
 
 app = FastAPI()
 
@@ -39,9 +39,10 @@ if __name__ == "__main__":
 async def get_ceh_info(ceh_data: Dict):
     rules = load_rules_from_yaml("./rules_data/rules.yaml")
     matched_messages = apply_rules(ceh_data, rules)
-    formatted_messages = format_matched_messages(matched_messages)
+    selected_message = select_highest_priority_rule(matched_messages)
+    formatted_message = format_matched_message(selected_message)
 
-    return formatted_messages
+    return formatted_message
 
 @app.get("/health")
 async def health_check():
