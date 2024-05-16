@@ -1,9 +1,46 @@
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any, Tuple, Callable
+import operator
+import re
 
 from datetime import date
 
 from rules_data.path_transcoding import path_transcoding
 
+
+def parse_condition(condition: str) -> List[Tuple[Callable[[Any, Any], bool], Any]]:
+    """
+    Analyse la condition pour identifier les opérateurs et les valeurs de comparaison.
+    Gère les expressions combinées avec 'or'.
+
+    Args:
+    condition (str): La condition sous forme de chaîne de caractères.
+
+    Returns:
+    List[Tuple[Callable, Any]]: Une liste de tuples contenant l'opérateur de comparaison et la valeur.
+    """
+    operators = {
+        '>': operator.gt,
+        '<': operator.lt,
+        '>=': operator.ge,
+        '<=': operator.le,
+        '=': operator.eq  # Gérer l'égalité explicite si nécessaire
+    }
+    # Séparer les conditions basées sur 'or'
+    sub_conditions = [sub.strip() for sub in condition.split('or')]
+    conditions = []
+
+    # Regex pour extraire les opérateurs et les valeurs
+    pattern = r'([><]=?|=)\s*([0-9]+(?:\.[0-9]+)?)'
+    
+    for sub in sub_conditions:
+        match = re.search(pattern, sub)
+        if match:
+            op_symbol, value = match.groups()
+            op = operators[op_symbol]
+            value = float(value)
+            conditions.append((op, value))
+    
+    return conditions
 def check_condition(json_data: Dict[str, Any], key: str, value: Dict[str, Any]) -> bool:
     """
     Check if a given condition is met in the JSON data.
@@ -26,9 +63,19 @@ def check_condition(json_data: Dict[str, Any], key: str, value: Dict[str, Any]) 
             current_data = current_data[part]
         else:
             return False
-
-    return current_data == condition_value
-
+        # Gestion des opérateurs complexes
+    if isinstance(condition_value, str) and any(op in condition_value for op in ['>', '<', '>=', '<=', 'or']):
+        # Analyser la condition si elle est une chaîne contenant un opérateur spécial
+        parsed_condition = parse_condition(condition_value)
+        if isinstance(parsed_condition, list):
+            # Gestion des conditions avec 'or'
+            return any(op(current_data, val) for op, val in parsed_condition)
+        else:
+            op, val = parsed_condition
+            return op(current_data, val)
+    else:
+        # Comparaison directe pour les égalités simples
+        return current_data == condition_value
 
 
 def apply_rules(json_data: Dict[str, Any], rules: List[Dict[str, Any]]) -> List[Tuple[str, str, int, date, date, str]]:
@@ -112,3 +159,15 @@ def select_highest_priority_rule(rules):
     # On utilise max avec une clé qui prend en compte la priorité et la date de création inverse
     # pour que la règle la plus récente soit choisie en cas d'égalité de priorité.
     return max(rules, key=lambda rule: (-rule[2], rule[3].toordinal(), rule[6]))
+
+
+def get_meteo_for_location(ceh_data: Dict[str, Any]) -> str:
+    """
+    Get the weather for a given location for assistance vehicle
+    """
+    request_type = ceh_data.get('flow', {}).get('content', {}).get('collectedData', {}).get('request', {}).get('requestType', {})
+    
+    weather = ceh_data.get('flow', {}).get('content', {}).get('collectedData', {}).get('requestGeneralInformation', {}).get('weather', {})
+
+    waiting = ceh_data.get('flow', {}).get('content', {}).get('collectedData', {}).get('requestGeneralInformation', {}).get('waiting', {})
+    

@@ -9,8 +9,9 @@ path_transcoding = {
     "nom de la rue": "flow.content.collectedData.requestGeneralInformation.address.road",
     "ville": "flow.content.collectedData.requestGeneralInformation.address.city",
     "departement": "flow.content.collectedData.requestGeneralInformation.address.department",
-    "pays": "flow.content.returnDatasParams.codeSite",
+    "code site": "flow.content.returnDatasParams.codeSite",
     "type de demande": "flow.content.collectedData.request.requestType",
     "is abuser": "flow.content.collectedData.requestGeneralInformation.isAbuser",
-    "isAngry": "flow.content.collectedData.requestSentiment.isInsult",
+    "temps d'attente": "flow.content.collectedData.requestGeneralInformation.waiting",
+    "intent": "flow.content.callbotPathData.conversation.mainIntent",
 }
