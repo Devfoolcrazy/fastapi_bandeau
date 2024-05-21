@@ -1,5 +1,6 @@
 # CORE
 from typing import Dict
+import logging
 
 # FASTAPI
 from fastapi import FastAPI
@@ -37,8 +38,16 @@ if __name__ == "__main__":
 # TODO mettre le load du yaml dans le context
 @app.post("/ceh")
 async def get_ceh_info(ceh_data: Dict):
-    rules = load_rules_from_yaml("./rules_data/rules.yaml")
-    matched_messages = apply_rules(ceh_data, rules)
+    try:
+        rules = load_rules_from_yaml("./rules_data/rules.yaml")
+    except Exception as e:
+        logging.error(e)
+    
+    try:
+        matched_messages = apply_rules(ceh_data, rules)
+    except Exception as e:
+        logging.error(e)
+
     selected_message = select_highest_priority_rule(matched_messages)
     formatted_message = format_matched_message(selected_message)
 

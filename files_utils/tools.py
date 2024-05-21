@@ -1,5 +1,6 @@
 import yaml
 import json
+import logging
 
 def load_rules_from_yaml(filename: str) -> dict:
     """
@@ -11,6 +12,11 @@ def load_rules_from_yaml(filename: str) -> dict:
     Returns:
         dict: The loaded rules.
     """
-    with open(filename, 'r') as f:
-        rules = yaml.safe_load(f)
+    try:
+        with open(filename, 'r') as f:
+            rules = yaml.safe_load(f)
+    except FileNotFoundError:
+        logging.error(f"File not found: {filename}")
+        raise
+
     return rules

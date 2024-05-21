@@ -1,0 +1,249 @@
+{
+  "id": "81443a5d-38eb-4209-a8c4-bdce00bd50a3",
+  "version": 0,
+  "direction": "ENTRANTE",
+  "type": "CALLBOT",
+  "creationDate": "2024-05-16T13:59:06.529476+02:00",
+  "lastChangeDate": "2024-05-16T13:59:06.786699+02:00",
+  "contacts": [
+    {
+      "id": "f49d597b-2994-43af-b893-9dc468b2234f",
+      "lastname": null,
+      "type": "Personne physique"
+    }
+  ],
+  "flows": [
+    {
+      "id": "f7590bf9-7bbb-45cd-836d-b89a9c24f8af",
+      "creationDate": "2024-05-16T13:59:06.482+02:00",
+      "media": "TELEPHONE",
+      "dataType": "VOIX",
+      "sourceSystem": {
+        "name": "CALLBOT",
+        "reference": "64bbf3f4-78ab-4ad8-856e-60f9245c654a"
+      },
+      "documents": [],
+      "details": {
+        "type": "TELEPHONE",
+        "phone": {
+          "callingNumber": "+33685625190",
+          "calledNumber": "+33120202029",
+          "receiptDate": "2024-05-16T13:59:04.974+02:00"
+        }
+      }
+    },
+    {
+      "id": "505a4f99-5f14-439e-b9c3-9c9886e29786",
+      "creationDate": "2024-05-16T13:59:34.483+02:00",
+      "media": "API",
+      "dataType": "DONNEES",
+      "sourceSystem": {
+        "name": "CALLBOT",
+        "reference": "64bbf3f4-78ab-4ad8-856e-60f9245c654a"
+      },
+      "documents": [
+        {
+          "type": "INC",
+          "description": "Demande d'assistance CallBot",
+          "pages": [
+            {
+              "position": 1,
+              "file": {
+                "id": "0629a4a3-9ff3-4872-b841-579db71d708b",
+                "name": "1135b48f-2449-473a-bdae-c0a4de85101a",
+                "mediaType": "application/json",
+                "size": 5040,
+                "permalink": "a04c68c7-c7f3-4355-bb6d-e8ad6ee20fa4-0629a4a3-9ff3-4872-b841-579db71d708b"
+              }
+            }
+          ]
+        }
+      ],
+      "details": {
+        "type": "DATA",
+        "data": {
+          "receiptDate": "2024-05-16T13:59:04.974+02:00"
+        }
+      }
+    }
+  ],
+  "_embedded": {
+    "documents": [
+      {
+        "fileId": "0629a4a3-9ff3-4872-b841-579db71d708b",
+        "permalink": "a04c68c7-c7f3-4355-bb6d-e8ad6ee20fa4-0629a4a3-9ff3-4872-b841-579db71d708b",
+        "content": {
+          "botDialogSlot": {
+            "final_context": "FC-VEH-1C-MW",
+            "tag_majorIntentAtWm": "TCD-VEH-1C",
+            "request_type": "RoadSideAssistance",
+            "idAni": "+33685625190",
+            "idDnis": "",
+            "site_exception": "NO",
+            "spth_no_neutral": "NO",
+            "insurance_subscriberKyc": "MCV",
+            "initial_intent": "TCD-VEH-1C",
+            "initial_intent_confidence": 0.4394780397415161,
+            "foreign": "NO",
+            "breakdown_vs_accident": "panne",
+            "motorway": "YES",
+            "assureur": "MC",
+            "first_appel": "YES",
+            "escape": "Transfert",
+            "idInteractionCeh": "81443a5d-38eb-4209-a8c4-bdce00bd50a3",
+            "idSessionGenesys": "64bbf3f4-78ab-4ad8-856e-60f9245c654a",
+            "idSessionNuance": "",
+            "breakdown_generator_fact": "panne"
+          },
+          "returnDatasParams": {},
+          "GCConfiguration": {
+            "is_dde_transfert_vehicule_enabled": true,
+            "is_assistance_domicile_enabled": true,
+            "is_assistance_deces_enabled": true,
+            "is_assistance_juridique_enabled": true,
+            "is_assistance_habitation_enabled": true,
+            "is_assistance_medicale_enabled": true,
+            "is_assistance_navigation_de_plaisance_enabled": true,
+            "is_dde_assurance_vague_enabled": true,
+            "is_dde_attestation_enabled": true,
+            "is_dde_assurance_enabled": true,
+            "is_dde_vehicule_autre_enabled": true,
+            "is_dde_mobilite_enabled": true,
+            "is_dde_remboursement_enabled": true,
+            "is_dde_hebergement_enabled": true,
+            "is_dde_serv_constructeur_enabled": true,
+            "is_dde_first_appel_assistance_non_definie_enabled": true,
+            "is_assistance_montagne_enabled": true,
+            "is_prestataire_assistance_enabled": true,
+            "is_first_appel_assistance_vol_vehicule_enabled": false,
+            "is_suivi_non_defini_enabled": true,
+            "is_first_appel_assistance_vehicule_enabled": true,
+            "is_kyc_dossier_existant_enabled": true,
+            "is_reclamation_assistance_enabled": true,
+            "is_assistance_vol_enabled": true,
+            "is_assistance_cles_enabled": true,
+            "is_assistance_corporate_enabled": true,
+            "is_vol_papier_etranger_enabled": false,
+            "is_first_appel_assistance_vehicule_Q0_required": false,
+            "is_first_appel_assistance_vehicule_confirmed": false,
+            "is_assistance_habitation_Q0_required": false,
+            "is_assistance_domicile_Q0_required": false,
+            "is_assistance_montagne_Q0_required": false,
+            "is_assistance_deces_Q0_required": false,
+            "is_assistance_medicale_Q0_required": false,
+            "is_dde_hebergement_Q0_required": false,
+            "is_dde_transfert_vehicule_Q0_required": false,
+            "is_assistance_navigation_de_plaisance_Q0_required": false,
+            "is_dde_assurance_Q0_required": false,
+            "is_dde_attestation_Q0_required": false,
+            "is_assistance_vol_Q0_required": false,
+            "is_assistance_cles_Q0_required": false,
+            "is_dde_remboursement_Q0_required": false,
+            "is_dde_mobilite_Q0_required": false
+          },
+          "collectedData": {
+            "request": {
+              "requestType": "RoadSideAssistance"
+            },
+            "requestGeneralInformation": {
+              "address": {},
+              "isVip": false,
+              "isAbuser": false,
+              "client": "MC"
+            },
+            "requestSentiment": {
+              "isHesitate": false,
+              "isInsult": false,
+              "isRepeat": false,
+              "isSth": false,
+              "isStupid": false,
+              "isNoSound": false
+            },
+            "vehicle": {},
+            "location": {
+              "address": {},
+              "isOnMotorway": true,
+              "isAtHome": false,
+              "locationOriginalInput": "Je suis en panne sur l'autoroute je suis assuré MAIF"
+            },
+            "vehicleEvent": {},
+            "featuresValidation": {
+              "processAutomationValidation": false,
+              "schedulingRequestValidation": false
+            },
+            "issue": {}
+          },
+          "callbotPathData": {
+            "conversation": {
+              "hasBeenReEngaged": false,
+              "hangUpBeforeBotDialog": false,
+              "hangUpDuringBotDialog": false,
+              "mainIntent": "first_appel_assistance_vehicule",
+              "finalContext": "FC-VEH-1C-MW",
+              "initialIntent": "TCD-VEH-1C"
+            },
+            "kycFeedback": {
+              "resultHttpKyc": "0",
+              "kycActivated": true,
+              "externalAiModelsActivated": false,
+              "ExpectingTimeInformation": true
+            },
+            "kycDetails": {
+              "subscriber": true,
+              "provider": false,
+              "providerDeclared": false
+            },
+            "featuresActivated": {
+              "routingFeature": false,
+              "enrichedSessionFeature": false,
+              "automationFeature": false
+            },
+            "dialogOutput": {
+              "callTransfer": true,
+              "userInformation": false,
+              "processAutomationActivated": false,
+              "Selfcare": false,
+              "scheduledAction": false
+            }
+          },
+          "technicalData": {
+            "interactionSource": {
+              "userData": {
+                "userChannelId": "tel:+33685625190",
+                "systemId": "+33120202029"
+              },
+              "internalRefCanalSource": "VOICEBOT",
+              "supportType": "CALLBOT",
+              "supportName": "BOT1.2",
+              "versionSoftware": "* n/a",
+              "idNuance": "",
+              "idGenesys": "64bbf3f4-78ab-4ad8-856e-60f9245c654a",
+              "idCeh": "81443a5d-38eb-4209-a8c4-bdce00bd50a3"
+            },
+            "interactionTimestamp": {
+              "debutInteraction": "20240516115908",
+              "finInteraction": "20240516115934"
+            }
+          },
+          "transcriptionsData": {
+            "wordCloud": "|||panne|autoroute|MAIF|autoroute|",
+            "questionsResponsesType": "Welcome_Message;20240516115909;Bonjour, je suis l'agent virtuel d'Inter Mutuelles Assistance.; \\nQuestion_Welcome_Message;20240516115921;Quel est l'objet de votre appel?;Je suis en panne sur l'autoroute je suis assuré MAIF\\nfisrt_appel_assistance_vehicule_PremierAppel;20240516115932;Merci pour votre réponse, je comprends qu'il s'agit de votre tout première appel concernant cette demande, <break time='150ms' /> est-ce bien le cas ?;Oui\\nMessage_Sortie;20240516115934;Je comprends que vous êtes sur une autoroute. Je vous invite donc à respecter scrupuleusement les consignes de sécurité en vous plaçant derrière les barrières de protection. Prudence, merci de bien vouloir rester en ligne;\\n",
+            "responseFirstIntent": "Je suis en panne sur l'autoroute je suis assuré MAIF"
+          },
+          "orientationData": {
+            "internalrefCanal": "CALLBOT",
+            "key": "MC/FC-VEH-1C-MW",
+            "exitType": "Transfert"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "documents": [
+      {
+        "href": "https://ceh-query-server.svc.rec-01.imacloud.net/ceh/document/a04c68c7-c7f3-4355-bb6d-e8ad6ee20fa4-0629a4a3-9ff3-4872-b841-579db71d708b"
+      }
+    ]
+  }
+}
