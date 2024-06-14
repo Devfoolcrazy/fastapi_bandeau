@@ -6,7 +6,7 @@ import re
 from datetime import date
 
 # OWN
-from rules_data.path_transcoding import path_transcoding
+from data.rules_data.path_transcoding import path_transcoding
 
 
 def parse_condition(condition: str) -> List[Tuple[Callable[[Any, Any], bool], Any]]:
