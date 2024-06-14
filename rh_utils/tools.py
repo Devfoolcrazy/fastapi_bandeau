@@ -8,26 +8,21 @@ def check_if_authorized(client_secret):
         return True
     else:
         return False
-    
+
+
 def ask_question(dataframe):
     # Choisis une ligne au hasard pour la question
     question_sample = dataframe.sample()
     question = question_sample['question'].iloc[0]
-    verified_answer = question_sample['verified_answer'].iloc[0]
     id_answer = question_sample['id'].iloc[0]
-    
-    # Poser la question à l'utilisateur
-    print(id_answer)
     
     return question, id_answer
 
 
 def get_question_by_id(dataframe, id_answer):
     question_sample = dataframe[dataframe['id'] == id_answer]
-
     question = question_sample['question'].iloc[0]
     verified_answer = question_sample['verified_answer'].iloc[0]
-    id_answer = question_sample['id'].iloc[0]
     
     return question, verified_answer
 
