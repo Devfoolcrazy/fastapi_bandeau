@@ -42,7 +42,7 @@ app.add_middleware(
 )
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host='127.0.0.1', port=8000, reload=True)
+    uvicorn.run("main:app", host='0.0.0.0', port=8000, reload=True)
 
 # TODO mettre le load du yaml dans le context
 @app.post("/ceh")
@@ -112,10 +112,6 @@ def breakdown_get_classif(user_answer: UserAnswer):
 
     print(prompts)
     print(problems_dict)
-
-@app.get("/rasa/variable_a_chaud")
-def rasa_variable_a_chaud():
-    return {"grand_compte": "MACIF"}
 
 
 @app.post("/methode/redacteur")
