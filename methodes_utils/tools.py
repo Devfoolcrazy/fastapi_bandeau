@@ -9,6 +9,7 @@ class SingletonMeta(type):
             cls._instances[cls] = super(SingletonMeta, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
 
+
 class OpenAIClient(metaclass=SingletonMeta):
     def __init__(self):
         self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
@@ -28,6 +29,7 @@ class VectorStore(metaclass=SingletonMeta):
 
     def get_vector_store(self):
         return self.vector_store
+
 
 def create_file_batch(file_path):
     client_instance = OpenAIClient().get_client()
