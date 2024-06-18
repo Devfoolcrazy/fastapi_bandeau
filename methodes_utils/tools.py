@@ -27,6 +27,7 @@ class VectorStore(metaclass=SingletonMeta):
         vector_store = self.client.beta.vector_stores.create(name="Contrat methode")
         return vector_store
 
+
     def get_vector_store(self):
         return self.vector_store
 
@@ -45,6 +46,7 @@ def create_file_batch(file_path):
         vector_store_id=vector_store_instance.id, files=file_streams
     )
     return file_batch
+
 
 def create_assistant():
     client_instance = OpenAIClient().get_client()
@@ -72,6 +74,7 @@ def create_assistant():
     )
     return assistant
 
+
 def updated_assistant(assistant):
     client_instance = OpenAIClient().get_client()
     vector_store_instance = VectorStore(client_instance).get_vector_store()
@@ -81,6 +84,7 @@ def updated_assistant(assistant):
         tool_resources={"file_search": {"vector_store_ids": [vector_store_instance.id]}},
     )
     return assistant
+
 
 def create_thread(question):
     # Create a thread
@@ -94,6 +98,7 @@ def create_thread(question):
     ]
     )
     return thread
+
 
 def run_thread(thread, assistant):
     # Run a thread
