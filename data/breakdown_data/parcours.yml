@@ -1,0 +1,105 @@
+problems:
+  - name: "suspicion_panne_moteur"
+    questions:
+      - id: "is_driving_car_when_event_occurs"
+        text: "La panne est-elle arrivée en roulant?"
+        type: "yes_no"
+        if_yes:
+          message: "Panne arrivée en roulant"
+          moyen: "REMO"
+          code_breakdown: "MOTEUR"
+          next: "is_lights_on_dashboard"
+        if_no:
+          message: "Panne arrivée à l'arrêt"
+          moyen: "REMO"
+          code_breakdown: "MOTEUR"
+          next: "is_lights_on_dashboard"
+      - id: "is_lights_on_dashboard"
+        text: "Il y a-t-il des voyants d'alerte/ message affichés au tableau de bord?"
+        type: "yes_no"
+        if_yes:
+          message: "Voyant allumé au tableau de bord"
+          moyen: "NA"
+          code_breakdown: "NA"
+          next: "END"
+        if_no:
+          message: "Voyant non allumé au tableau de bord"
+          moyen: "NA"
+          code_breakdown: "NA"
+          next: "END"
+
+  - name: "suspicion_panne_batterie"
+    questions:
+      - id: "is_driving_car_when_event_occurs"
+        text: "La panne est-elle arrivée en roulant?"
+        type: "yes_no"
+        if_yes:
+          message: "Panne arrivée en roulant"
+          moyen: "REMO"
+          code_breakdown: "MOTEUR"
+          next: "END"
+        if_no:
+          message: "Panne à l'arrêt"
+          moyen: "DSP"
+          code_breakdown: "BATTERIE"
+          next: "try_to_start"
+      - id: "try_to_start"
+        text: "Lorsque vous essayez de démarrer, que se passe t'il?"
+        type: "model_classification"
+        if_classif_A:
+          message: "Aucun voyant / msg d'erreur au tableau de bord"
+          moyen: "NA"
+          code_breakdown: "NA"
+          next: "END"
+        if_classif_B:
+          message: "Plusieurs voyants / msg d'erreur 'sapin de Noël'"
+          moyen: "NA"
+          code_breakdown: "NA"
+          next: "END"
+        if_classif_C:
+          message: "Eclairage faible du tableau de bord"
+          moyen: "NA"
+          code_breakdown: "NA"
+          next: "END"
+        if_classif_D:
+          message: "Voyants / msg d'erreur au moment de la mise du contact puis plus rien"
+          moyen: "NA"
+          code_breakdown: "NA"
+          next: "END"
+        if_classif_E:
+          message: "Aucun bruit (sauf clic-clic ou clac-clac)"
+          moyen: "NA"
+          code_breakdown: "NA"
+          next: "END"
+        if_classif_F:
+          message: "FIN DU PARCOURS: FALLBACK BATTERIE"
+          next: "END"
+
+  - name: "suspicion_panne_clef"
+    questions:
+      - id: "is_car_open_with_spare_key"
+        text: "Est ce qu'avec la clé de secours vous avez réussi à ouvrir votre véhicule ?"
+        type: "yes_no"
+        if_yes:
+          message: "Le véhicule s'ouvre avec la clef de secours"
+          moyen: "NA"
+          code_breakdown: "DEL"
+          next: "is_car_starting"
+        if_no:
+          message: "Dysfonctionnement de clé/carte"
+          moyen: "DSP"
+          code_breakdown: "DEL"
+          next: "END"
+      - id: "is_car_starting"
+        text: "Est ce que votre véhicule démarre?"
+        type: "yes_no"
+        if_yes:
+          message: "Le véhicule démarre"
+          moyen: "NA"
+          code_breakdown: "DEL"
+          next: "END"
+        if_no:
+          message: "Le véhicule ne démarre pas"
+          moyen: "DSP"
+          code_breakdown: "NA"
+          next: "END"

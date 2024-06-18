@@ -1,0 +1,5 @@
+{
+  "is_driving_car_when_event_occurs": "L'utilisateur va répondre par oui ou par non à une question donnée. Transforme sa réponse en booléen True ou False. Ne fait ni propos introductif, ni conclusion. Je veux juste le booléen.",
+  "lights_on_dashboard": "L'utilisateur va répondre par oui ou par non à une question donnée. Transforme sa réponse en booléen True ou False. Ne fait ni propos introductif, ni conclusion. Je veux juste le booléen.",
+  "try_to_start": "La réponse de l'utilisateur doit entrer dans l'une des catégories suivantes: A: Il n'y a aucun voyant ni message d'erruers au tableau de bord. B: Voyants et/ou message d'errueur au tableau de bord. C: Eclairage faible au tableau de bord. D: Voyant ou message d'erreur au moement de la mise du contact puis plus rien. E: Aucun bruit au contact (sauf clic clic ou clac clac). F: Tout ce qui ne correspond pas à ce qui est décrit ci-dessus. Je veux juste la lettre. Je ne veux ni propos introductif, ni conclusion."
+}

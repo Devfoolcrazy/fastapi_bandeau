@@ -3,7 +3,8 @@ from typing import Dict
 import logging
 
 # FASTAPI
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
@@ -12,9 +13,13 @@ from rh_utils.tools import ask_question, get_question_by_id, evaluate_user_answe
 from files_utils.tools import load_rules_from_yaml, load_csv
 from ceh_utils.tools import apply_rules, format_matched_message, select_highest_priority_rule, get_meteo_for_location
 from files_utils.tools import get_file_list
+from breakdown_spec_utils.tools import load_questions_from_yaml, load_prompts, convert_problems_to_dict
+## METHOD
+from methodes_utils.tools import create_file_batch, create_thread, run_thread, updated_assistant, create_assistant
 
 # MODELS
 from rh_utils.model import Survey
+from breakdown_spec_utils.model import UserAnswer
 
 app = FastAPI()
 
@@ -98,3 +103,35 @@ def rh_get_evaluation(survey: Survey):
         logging.error(e)
         return {"error": str(e)}
 
+
+@app.post("/breakdown/get_classif")
+def breakdown_get_classif(user_answer: UserAnswer):
+    data = load_questions_from_yaml('./data/breakdown_data/parcours.yml') 
+    problems_dict = convert_problems_to_dict(data)
+    prompts = load_prompts('./data/breakdown_data/prompts/prompts_list.json')
+
+    print(prompts)
+    print(problems_dict)
+
+@app.get("/rasa/variable_a_chaud")
+def rasa_variable_a_chaud():
+    return {"grand_compte": "MACIF"}
+
+
+@app.post("/methode/redacteur")
+async def upload_pdf(user_question, file: UploadFile = File(...)):
+
+    if file.content_type != "application/pdf":
+        return JSONResponse(content={"error": "Le fichier doit être au format PDF"}, status_code=400)
+
+    file_location = f"uploaded_files/{file.filename}"
+    with open(file_location, "wb") as f:
+        f.write(await file.read())
+
+    _file_batch = create_file_batch(file_location)
+    assistant = create_assistant()
+    assistant = updated_assistant(assistant)
+    thread = create_thread(user_question)
+    message = run_thread(thread, assistant)
+
+    return JSONResponse(content={"answer": message.value}, status_code=200)
